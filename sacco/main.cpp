@@ -26,20 +26,21 @@ top=-1;
 }
 void deposit(Depositdata data){//function to push deposit data objects into a stack
 if(top==99){
-    cout<<"you have the max account limit,sorry man"<<endl;//prints overflow if stack is full
+    cout<<"you have reached the max account limit,sorry man"<<endl;//prints overflow if stack is full
 }else{
 top=top+1;
 deposits[top]=data;
 }
 }
-void withdraw(double amount1){
+void withdraw(double amount1){//function to withdraw money
 if(top==-1){
     cout<<"you don't have any deposits bro!"<<endl;
 }
 if(deposits[top].amount>=amount1){//access the amount at the top of the stack at the particular time for particular account
-   Depositdata withdrawal(0,-amount1);//creates new object withdrawal
+Depositdata withdrawal(0,-amount1);//creates new object withdrawal
    deposit(withdrawal);//adds the negative withdrawal value to the account
    cout<<"you removed"<<amount1<<"successfully"<<endl;
+   cout<<"you have"<<deposits[top].amount<<"left"<<endl;
 }else{
 cout<<"sorry cant remove any money man."<<endl;
 }
@@ -69,10 +70,11 @@ Depositdata deposit1(1,50000);
 //push deposits into stack
 depositstack.deposit(deposit1);
 
+
 //withdraws from stack
 depositstack.withdraw(500);
 
-//print the stack currently
+//print stack (shows balance)
 depositstack.prints();
     return 0;
 }
